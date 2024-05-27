@@ -11,7 +11,7 @@ export default function App() {
     <AuthContextProvider>
         <NavigationBar/>
         <RecentItems/>
-        {/* <AITest/> */}
+        <AITest/>
         <Outlet />
         <Footer />
     </AuthContextProvider>
