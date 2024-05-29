@@ -44,6 +44,7 @@ const OrderHistoryList = () => {
         try {
           const info = await selectUserData(currentUserEmail);
           setUserInfo(info);
+
         } catch (error) {
           console.error('사용자 정보를 불러오는 중 에러:', error);
         }
@@ -125,7 +126,8 @@ const OrderHistoryList = () => {
     if (!confirmDelete) return; // 사용자가 취소를 선택한 경우 함수 종료
 
     try {
-      await axios.post('/ft/order/orderDelete', { oid: orderId });
+      const stringedOrderId = String(orderId); 
+      await axios.post('/ft/order/orderDelete', { oid: stringedOrderId });
       console.log('주문 삭제 완료');
       // 여기서 필요하다면 상태를 업데이트하거나 다른 작업을 수행할 수 있습니다.
       fetchOrderHistory();
@@ -174,7 +176,7 @@ const OrderHistoryList = () => {
       setOrders([]);
     }
   };
-
+  
   return (
     <Container fixed sx={{ mt: 5, mb: 5 }}>
       {/* 날짜별로 주문 목록 표시 */}

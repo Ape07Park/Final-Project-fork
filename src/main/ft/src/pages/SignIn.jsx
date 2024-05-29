@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { login, loginWithKakao, loginWithGoogle } from '../api/firebase';
 import { useNavigate, Link } from "react-router-dom";
-import { Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, Stack, Modal, Backdrop, Fade, Divider } from '@mui/material';
+import { CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, Stack, Modal, Backdrop, Fade, Divider } from '@mui/material';
 import FindPassModalSpring from "../components/user/FindPassModalSpring";
 import FindPassModal from "../components/user/FindPassModal";
 import FindPassModalPhone from "../components/user/FindPassModalPhone";
+import CustomButton from "../components/CustomButton.jsx";
 
 function SignIn() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
@@ -128,14 +129,15 @@ function SignIn() {
               required
             />
 
-            <Button
+            <CustomButton
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               로그인
-            </Button>
+            </CustomButton>
+
             <Box sx={{ mt: 4, p: 2, border: '1px solid #e0e0e0', borderRadius: 2, boxShadow: 2 }}>
               <Typography variant="body2" color="text.secondary" align="center" sx={{ mb: 2 }}>
                 아직 계정이 없으신가요?
@@ -145,16 +147,19 @@ function SignIn() {
               </Typography>
               <Box sx={{ textAlign: 'center', mb: 2 }}>
                 <Divider sx={{ my: 2 }} />
-                
+                <Typography>
+                  <Link onClick={handleOpenFindPassPhone} style={{textDecoration: 'none'}}>
+                    아이디 찾기
+                  </Link>
+                </Typography>
                 <Typography>
                   비밀번호 찾기
-                  <Link onClick={handleOpenFindPassModalFirebase} style={{marginLeft: 3}}>
+                  <Link onClick={handleOpenFindPassModalFirebase} style={{marginLeft: 3, textDecoration: 'none'}}>
                     이메일
                   </Link>
-                  <Link onClick={handleOpenFindPassPhone} style={{marginLeft: 5}}>
+                  <Link onClick={handleOpenFindPassPhone} style={{marginLeft: 5, textDecoration: 'none'}}>
                     휴대폰
                   </Link>
-
                 </Typography>
               </Box>
             </Box>
@@ -162,19 +167,19 @@ function SignIn() {
             <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
               <Grid item>
                 <Stack direction="row" spacing={2}>
-                  <Button onClick={handleGoogle} aria-label="Google 로그인">
+                  <CustomButton onClick={handleGoogle} aria-label="Google 로그인">
                     <img src="img/googlelogo.png" alt="Google Logo" style={{ width: 30 }} />
-                  </Button>
-                  <Button onClick={handleKakao}>
+                  </CustomButton>
+                  <CustomButton onClick={handleKakao}>
                     <img src="img/kakaologo.png" alt="Kakao Logo" style={{ width: 30 }} />
-                  </Button>
+                  </CustomButton>
                 </Stack>
               </Grid>
             </Grid>
           </Box>
         </Box>
 
-        
+        {/* Modal for FindPassModal */}
         <Modal
           open={modalType !== null}
           onClose={handleCloseFindPassModal}
