@@ -12,6 +12,17 @@ export default function Karlo({ image, maskImage }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedMask, setSelectedMask] = useState(null);
 
+  useEffect(() => {
+    setSelectedImage(image);
+    setSelectedMask(maskImage);
+  }, [maskImage]);
+
+  useEffect(() => {
+    if (selectedImage) {
+      handleImageUpload();
+    }
+  }, [selectedImage]); 
+
   const inpainting = async (image, mask) => {
     try {
       setLoading(true); 
@@ -20,8 +31,7 @@ export default function Karlo({ image, maskImage }) {
         {
           image: image,
           mask: mask,
-          prompt:
-            'The interior should be arranged so that it stands out naturally from other rooms or spaces and should always be located on the floor.',
+          prompt: 'room, living room, sit',
           negative_prompt: 'person',
           image_quality: 100,
           prior_num_inference_steps: 100,
@@ -61,16 +71,7 @@ export default function Karlo({ image, maskImage }) {
     readerImage.readAsDataURL(selectedImage);
   };
 
-  useEffect(() => {
-    setSelectedImage(image);
-    setSelectedMask(maskImage);
-  }, [image]);
 
-  useEffect(() => {
-    if (selectedImage) {
-      handleImageUpload();
-    }
-  }, [selectedImage]); 
 
   return (
     <>
