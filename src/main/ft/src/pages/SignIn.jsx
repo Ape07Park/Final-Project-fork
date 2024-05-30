@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { login, loginWithKakao, loginWithGoogle } from '../api/firebase';
 import { useNavigate, Link } from "react-router-dom";
 import { CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, Stack, Modal, Backdrop, Fade, Divider } from '@mui/material';
-import FindPassModalSpring from "../components/user/FindPassModalSpring";
-import FindPassModal from "../components/user/FindPassModal";
+
+import FindPassModal from "../components/user/ChangePassModal.jsx";
 import FindPassModalPhone from "../components/user/FindPassModalPhone";
 import CustomButton from "../components/CustomButton.jsx";
+import FindEmailModalPhone from "../components/user/FindEmailModalPhone.jsx";
+import FindPassModalSpring from "../components/user/FindPassModalSpring.jsx";
 
 function SignIn() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
   const [modalType, setModalType] = useState(null);
   const navigate = useNavigate();
-
+  const [isHoveredGoogle, setIsHoveredGoogle] = useState(false);
+  const [isHoveredKakao, setIsHoveredKakao] = useState(false);
   const handleChange = e => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   }
@@ -76,16 +79,29 @@ function SignIn() {
   };
 
   const handleOpenFindPassModalFirebase = () => {
-    setModalType('firebase');
+    setModalType('findPassToUsedFirebase');
   };
 
-  const handleOpenFindPassPhone= () => {
+  const handleOpenFindPassPhone = () => {
     setModalType('mobile');
+  };
+
+  const handleOpenFindEmailPhone = () => {
+    setModalType('findEmail');
   };
 
   const handleCloseFindPassModal = () => {
     setModalType(null);
   };
+
+  const hoverGoogle = () => {
+    setIsHoveredGoogle(!isHoveredGoogle);
+  };
+
+  const hoverKakao = () => {
+    setIsHoveredKakao(!isHoveredKakao);
+  };
+
 
   return (
     <ThemeProvider theme={createTheme()}>
@@ -137,7 +153,6 @@ function SignIn() {
             >
               로그인
             </CustomButton>
-
             <Box sx={{ mt: 4, p: 2, border: '1px solid #e0e0e0', borderRadius: 2, boxShadow: 2 }}>
               <Typography variant="body2" color="text.secondary" align="center" sx={{ mb: 2 }}>
                 아직 계정이 없으신가요?
@@ -148,7 +163,7 @@ function SignIn() {
               <Box sx={{ textAlign: 'center', mb: 2 }}>
                 <Divider sx={{ my: 2 }} />
                 <Typography>
-                  <Link onClick={handleOpenFindPassPhone} style={{textDecoration: 'none'}}>
+                  <Link onClick={handleOpenFindEmailPhone} style={{textDecoration: 'none'}}>
                     아이디 찾기
                   </Link>
                 </Typography>
@@ -167,12 +182,36 @@ function SignIn() {
             <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
               <Grid item>
                 <Stack direction="row" spacing={2}>
-                  <CustomButton onClick={handleGoogle} aria-label="Google 로그인">
-                    <img src="img/googlelogo.png" alt="Google Logo" style={{ width: 30 }} />
-                  </CustomButton>
-                  <CustomButton onClick={handleKakao}>
-                    <img src="img/kakaologo.png" alt="Kakao Logo" style={{ width: 30 }} />
-                  </CustomButton>
+
+                  <img
+                    src="img/googlelogo.png"
+                    alt="Google Logo"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      cursor: 'pointer',
+                      ...(isHoveredGoogle && { transform: 'scale(1.1)', transition: 'transform 0.3s' }),
+                    }}
+                    onClick={() => {
+                      handleGoogle();
+                      hoverGoogle();
+                    }}
+                  />
+                  <img
+                    src="img/kakaologo.png"
+                    alt="Kakao Logo"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      cursor: 'pointer',
+                      ...(isHoveredKakao && { transform: 'scale(1.1)', transition: 'transform 0.3s' }),
+                    }}
+                    onClick={() => {
+                      handleKakao();
+                      hoverKakao();
+                    }}
+                  />
+
                 </Stack>
               </Grid>
             </Grid>
@@ -205,9 +244,11 @@ function SignIn() {
                 p: 4,
               }}
             >
-              {modalType === 'spring' && <FindPassModalSpring handleClose={handleCloseFindPassModal} />}
-              {modalType === 'firebase' && <FindPassModal handleClose={handleCloseFindPassModal} />}
+              {modalType === 'findEmail' && <FindEmailModalPhone open={modalType === 'findEmail'} onClose={handleCloseFindPassModal} />}
+              {modalType === 'findPassToUsedFirebase' && <FindPassModal handleClose={handleCloseFindPassModal} />}
+              {modalType === 'spring' && <FindPassModalSpring open={modalType === 'spring'} onClose={handleCloseFindPassModal} />}
               {modalType === 'mobile' && <FindPassModalPhone open={modalType === 'mobile'} onClose={handleCloseFindPassModal} />}
+
             </Box>
           </Fade>
         </Modal>
