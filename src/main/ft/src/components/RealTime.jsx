@@ -129,7 +129,7 @@ function RealTimeContent() {
         {listData.map((item, index) => (
           <MenuItem key={index} onClick={() => handleMenuItemClick(item.query)}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography variant="body1" sx={{ color: 'orange', marginRight: 1 }}>
+              <Typography variant="body1" sx={{ color: 'orange', marginRight: 2, fontWeight:'bold' }}>
                 {(index + 1).toString().padStart(2, '0')}
               </Typography>
               <Typography variant="body1" sx={{ color: 'black' }}>
