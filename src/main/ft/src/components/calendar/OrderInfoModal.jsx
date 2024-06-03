@@ -1,10 +1,9 @@
 import React from 'react';
-import { Modal, Box, Button, Typography, Grid } from '@mui/material';
+import { Modal, Box, Typography, Grid } from '@mui/material';
 import '../../css/orderInfoModal.css';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const OrderInfoModal = ({ isOpen, onRequestClose, orders }) => {
-  console.log('asfs' + orders);
   const orderList = (orders) ? Object.values(orders): []; // orders가 존재 여부 확인하고, 존재 x 시 빈 배열로 내보냄
   const navigate = useNavigate();
 

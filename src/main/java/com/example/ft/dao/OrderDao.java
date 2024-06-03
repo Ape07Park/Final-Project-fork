@@ -49,7 +49,7 @@ public interface OrderDao {
 
 	// 주문 취소
 	@Update("UPDATE `order`"
-	         + " SET isDeleted = 2, status = '취소'"
+	         + " SET isDeleted = 2, status = '취소', way=''"
 	         + " WHERE oid = #{oid};")
 	   void deleteOrder(int oid);
 
