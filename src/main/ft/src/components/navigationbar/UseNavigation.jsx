@@ -27,7 +27,7 @@ const useNavigation = () => {
 
     const handleToCart = () => {
         if (!user || !user.email) {
-            window.location.href = '/signIn';
+            navigate('/signIn');
             return;
         }
         navigate('/cart');
@@ -35,7 +35,7 @@ const useNavigation = () => {
 
     const handleWish = () => {
         if (!user || !user.email) {
-            window.location.href = '/signIn';
+            navigate('/signIn');
             return;
         }
         navigate('/wish/list');
@@ -43,9 +43,9 @@ const useNavigation = () => {
 
     const handleToOrderHistory = () => {
         if (!user || !user.email) {
-            window.location.href = '/signIn';
+            navigate('/signIn');
             if (window.confirm('비회원 조회를 원하시나요?')) {
-                window.location.href = '/nonMemberOrderHistory';
+                navigate('/nonMemberOrderHistory');
             }
             return;
         }

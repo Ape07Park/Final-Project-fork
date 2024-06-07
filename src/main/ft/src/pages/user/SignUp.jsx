@@ -391,7 +391,7 @@ export default function SignUp() {
               <Grid item>
                 <Stack direction="row" spacing={2}>
                   <img
-                    src="img/googlelogo.png"
+                    src={`${process.env.PUBLIC_URL}/img/googlelogo.png`}
                     alt="Google Logo"
                     style={{
                       width: 40,
@@ -405,7 +405,7 @@ export default function SignUp() {
                     }}
                   />
                   <img
-                    src="img/kakaologo.png"
+                    src={`${process.env.PUBLIC_URL}/img/kakaologo.png`}
                     alt="Kakao Logo"
                     style={{
                       width: 40,

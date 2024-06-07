@@ -8,6 +8,9 @@ Chart.register(ArcElement, Tooltip, Legend);
 
 const SoldItem = () => {
   const [topSoldItems, setTopSoldItems] = useState([]);
+  const url = process.env.NODE_ENV === 'development' ?
+  `http://localhost:3000/FURNiture` :      // 개발 모드 (development)
+  `https://kangsunglee.github.io/FURNiture`;   // 배포 모드 (production)
 
   useEffect(() => {
     const fetchTopSoldItems = async () => {
@@ -32,7 +35,7 @@ const SoldItem = () => {
         const left = (window.innerWidth - width) / 2;
         const top = (window.innerHeight - height) / 2;
         const specs = `width=${width}, height=${height}, left=${left}, top=${top}`;
-        window.open(`/item/detail/${productId}`, '_blank',specs);
+        window.open(`${url}/item/detail/${productId}`, '_blank',specs);
       }
     }
   };

@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -33,44 +33,42 @@ import NonMemberOrderHistory from './pages/order/NonMemberOrderHistory';
 import ItemMenuList from './pages/item/ItemMenuList';
 import DeveloperPage from './pages/DeveloperPage';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <NotFound />,
-    children: [
-      { index: true, element: <MainPage /> },
-      { path: 'itemlist', element: <ItemList /> },
-      { path: 'itemlist/:searchQuery', element: <ItemListSearch /> },
-      { path: 'item/detail/:iid', element: <ItemDetail /> },
-      { path: 'cart', element: <CartPage/> },
-      { path: 'signIn', element: <SignIn/> },
-      { path: 'signUp', element: <SignUp/> },
-      { path: 'userInfo', element: <UserInfo/> },
-      { path: 'userUpdate', element: <UserUpdate/> },
-      { path: 'callback/kakaotalk', element: <Kakao/> },
-      { path: 'wish/list', element: <WishItemList/> },
-      { path: 'order', element: <Order/> },
-      { path: 'orderHistoryList', element: <OrderHistoryList/> },
-      { path: 'success', element: <SuccessPage/> },
-      { path: 'fail', element: <FailPage/> },
-      { path: 'checkout', element: <CheckoutPage/> },
-      { path: 'nonMemberOrderHistory', element: <NonMemberOrderHistory/>},
-      { path: 'itemMenuList/:menu', element: <ItemMenuList/>},
-      { path: 'developerPage', element: <DeveloperPage/>},
-      { path: 'admin/products', element: <ProductAnalysisPage/>},
-      { path: 'admin/itemlist', element: <AdminItemLists /> },
-      { path: 'admin/item/insert', element: <ItemInsertAdminRoutes /> },
-      { path: 'admin/item/update/:iid', element: <ItemUpdateAdminRoutes/> },
-      { path: 'admin/QnAlist', element: <AdminQnAList/> },
-      { path: 'admin/order/list', element: <AdminOrderLists /> },
-      { path: 'admin/chart', element: <Dashboard /> },
-    ]
-  }
-]);
+const router = (
+  <Routes>
+    <Route path="/" element={<App />}>
+      <Route index element={<MainPage />} />
+      <Route path="itemlist" element={<ItemList />} />
+      <Route path="itemlist/:searchQuery" element={<ItemListSearch />} />
+      <Route path="item/detail/:iid" element={<ItemDetail />} />
+      <Route path="cart" element={<CartPage />} />
+      <Route path="signIn" element={<SignIn />} />
+      <Route path="signUp" element={<SignUp />} />
+      <Route path="userInfo" element={<UserInfo />} />
+      <Route path="userUpdate" element={<UserUpdate />} />
+      <Route path="callback/kakaotalk" element={<Kakao />} />
+      <Route path="wish/list" element={<WishItemList />} />
+      <Route path="order" element={<Order />} />
+      <Route path="orderHistoryList" element={<OrderHistoryList />} />
+      <Route path="success" element={<SuccessPage />} />
+      <Route path="fail" element={<FailPage />} />
+      <Route path="checkout" element={<CheckoutPage />} />
+      <Route path="nonMemberOrderHistory" element={<NonMemberOrderHistory />} />
+      <Route path="itemMenuList/:menu" element={<ItemMenuList />} />
+      <Route path="developerPage" element={<DeveloperPage />} />
+      <Route path="admin/products" element={<ProductAnalysisPage />} />
+      <Route path="admin/itemlist" element={<AdminItemLists />} />
+      <Route path="admin/item/insert" element={<ItemInsertAdminRoutes />} />
+      <Route path="admin/item/update/:iid" element={<ItemUpdateAdminRoutes />} />
+      <Route path="admin/QnAlist" element={<AdminQnAList />} />
+      <Route path="admin/order/list" element={<AdminOrderLists />} />
+      <Route path="admin/chart" element={<Dashboard />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  </Routes>
+);
 
 function AdminItemLists() {
-  const { user } = useAuthContext(); 
+  const { user } = useAuthContext();
   return user && user.isAdmin ? <AdminItemList /> : <MainPage />;
 }
 
@@ -80,7 +78,7 @@ function AdminQnAList() {
 }
 
 function ItemInsertAdminRoutes() {
-  const { user } = useAuthContext(); 
+  const { user } = useAuthContext();
   return user && user.isAdmin ? <ItemInsert /> : <MainPage />;
 }
 
@@ -90,23 +88,25 @@ function ItemUpdateAdminRoutes() {
 }
 
 function AdminOrderLists() {
-  const { user } = useAuthContext(); 
+  const { user } = useAuthContext();
   return user && user.isAdmin ? <AdminOrderHistoryList /> : <MainPage />;
 }
 
 function Dashboard() {
-  const { user } = useAuthContext(); 
+  const { user } = useAuthContext();
   return user && user.isAdmin ? <DashboardPage /> : <MainPage />;
 }
 
 function ProductAnalysisPage() {
-  const { user } = useAuthContext(); 
+  const { user } = useAuthContext();
   return user && user.isAdmin ? <ProductAnalysis /> : <MainPage />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <RouterProvider router={router} />
+  <BrowserRouter basename="/FURNiture">
+    {router}
+  </BrowserRouter>
 );
 
 reportWebVitals();

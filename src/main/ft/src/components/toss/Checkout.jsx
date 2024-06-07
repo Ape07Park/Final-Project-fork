@@ -13,6 +13,10 @@ export function CheckoutPage() {
   const [price, setPrice] = useState(0); 
   const location = useLocation();
   const { orderData } = location.state || {};
+
+  const url = process.env.NODE_ENV === 'development' ?
+  `http://localhost:3000/FURNiture` :      // 개발 모드 (development)
+  `https://kangsunglee.github.io/FURNiture`;   // 배포 모드 (production)
   
   useEffect(() => {
     const fetchPaymentWidget = async () => {
@@ -72,8 +76,10 @@ export function CheckoutPage() {
             customerName: orderData.order.name || "", // 주문자 이름 설정
             customerEmail: orderData.order.email || "", // 주문자 이메일 설정
             customerMobilePhone: orderData.order.tel ? orderData.order.tel.replace(/-/g, '') : "",// 주문자 전화번호 설정
-            successUrl: `${window.location.origin}/success`,
-            failUrl: `${window.location.origin}/fail`,
+            // successUrl: `${window.location.origin}/success`,
+            // failUrl: `${window.location.origin}/fail`,
+            successUrl: `${url}/success`,
+            failUrl: `${url}/fail`,
         });
         
         // 결제 성공 후 /success 페이지로 이동, orderData도 함께 전달

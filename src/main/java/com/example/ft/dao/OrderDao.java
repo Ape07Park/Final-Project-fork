@@ -58,23 +58,23 @@ public interface OrderDao {
 	 */
 
 	// 주문 정보의 아이템 부분을 불러오기 위한 것으로 연결된 fk를 이용해 다른 것들에 접근 및 필요한 거 띄움
-	@Select("SELECT item.name, item.price, item.salePrice, item.img1, itemOption.option" + " FROM orderItem"
-			+ " JOIN item ON orderItem.iid = item.iid" + " JOIN itemOption ON orderItem.ioid = itemOption.ioid"
-			+ " WHERE oiid=#{oiid} and orderItem.isDeleted = 0")
+	@Select("SELECT item.name, item.price, item.salePrice, item.img1, itemoption.option" + " FROM orderitem"
+			+ " JOIN item ON orderitem.iid = item.iid" + " JOIN itemoption ON orderitem.ioid = itemoption.ioid"
+			+ " WHERE oiid=#{oiid} and orderitem.isDeleted = 0")
 	List<OrderItem> getOrderItemListByOiid(int Oiid);
 
 	// 주문 내역들 email로 가져오기 - 사용 중
 	@Select(" SELECT o.oid, o.email, o.status, o.totalPrice, o.regDate, o.way, "
 			+ " o.postCode, o.addr, o.detailAddr, o.tel, "
-			+ " oi.count, oi.price, oi.review, oi.oiid, i.name, i.img1, i.iid, itemOption.option  " + " FROM `order` o "
-			+ " JOIN orderItem oi ON o.oid = oi.oid " + " JOIN item i ON oi.iid = i.iid "
-			+ " JOIN itemOption ON oi.iid = itemOption.iid AND oi.ioid = itemOption.ioid "
+			+ " oi.count, oi.price, oi.review, oi.oiid, i.name, i.img1, i.iid, itemoption.option  " + " FROM `order` o "
+			+ " JOIN orderitem oi ON o.oid = oi.oid " + " JOIN item i ON oi.iid = i.iid "
+			+ " JOIN itemoption ON oi.iid = itemoption.iid AND oi.ioid = itemoption.ioid "
 			+ " WHERE o.email=#{email} AND o.isDeleted=0 AND oi.isDeleted=0 " + " ORDER BY o.regDate DESC")
 	List<OrderHistory> getOrderHistoryList(String email);
 
 	//
 	// 주문 아이템 생성 및 order의 oid를 사용하여 삽입
-	@Insert(" INSERT INTO orderItem (oid, iid, ioid, count, price, isDeleted, review ) "
+	@Insert(" INSERT INTO orderitem (oid, iid, ioid, count, price, isDeleted, review ) "
 			+ " VALUES (#{oid}, #{iid}, #{ioid}, #{count}, #{price}, default, default)")
 	void insertOrderItemWithOid(OrderItem orderItem);
 
@@ -91,7 +91,7 @@ public interface OrderDao {
 	int getOid(String orderId);
 
 	// oid로 oderItem 추출
-	@Select("select * from orderItem where oid=#{oid}")
+	@Select("select * from orderitem where oid=#{oid}")
 	List<OrderItem> getOrderItems(int oid);
 
 	@Update("update `order` set status=#{status} where oid=#{oid}")
@@ -105,9 +105,9 @@ public interface OrderDao {
 	// 모든 주문 내역 가져오기
 	@Select(" SELECT o.oid, o.email, o.status, o.totalPrice, o.regDate, "
 			+ " o.way, o.isDeleted, o.postCode, o.addr, o.detailAddr, o.tel, "
-			+ " oi.count, oi.price, i.name, i.img1, i.iid, itemOption.option  " + " FROM `order` o "
-			+ " JOIN orderItem oi ON o.oid = oi.oid " + " JOIN item i ON oi.iid = i.iid "
-			+ " JOIN itemOption ON oi.iid = itemOption.iid AND oi.ioid = itemOption.ioid "
+			+ " oi.count, oi.price, i.name, i.img1, i.iid, itemoption.option  " + " FROM `order` o "
+			+ " JOIN orderitem oi ON o.oid = oi.oid " + " JOIN item i ON oi.iid = i.iid "
+			+ " JOIN itemoption ON oi.iid = itemoption.iid AND oi.ioid = itemoption.ioid "
 			+ " ORDER BY o.regDate DESC")
 	List<OrderHistory> getOrderHistoryListForAdmin();
 	 
@@ -116,14 +116,14 @@ public interface OrderDao {
 	void orderWayUpdate(Order order);
 
 	// oiid로 review 여부 수정
-	@Update("UPDATE orderItem set review=1 where oiid=#{oiid}")
+	@Update("UPDATE orderitem set review=1 where oiid=#{oiid}")
 	void oiidReviewUpdate(int oiid);
 	
 	// 비회원
 	@Select(" SELECT o.oid, o.email, o.status, o.totalPrice, o.regDate, o.way, o.postCode, o.addr, o.detailAddr, o.tel, "
-			+ " oi.count, oi.price, oi.review, oi.oiid, i.name, i.img1, i.iid, itemOption.option  " + " FROM `order` o "
-			+ " JOIN orderItem oi ON o.oid = oi.oid " + " JOIN item i ON oi.iid = i.iid "
-			+ " JOIN itemOption ON oi.iid = itemOption.iid AND oi.ioid = itemOption.ioid "
+			+ " oi.count, oi.price, oi.review, oi.oiid, i.name, i.img1, i.iid, itemoption.option  " + " FROM `order` o "
+			+ " JOIN orderitem oi ON o.oid = oi.oid " + " JOIN item i ON oi.iid = i.iid "
+			+ " JOIN itemoption ON oi.iid = itemoption.iid AND oi.ioid = itemoption.ioid "
 			+ " WHERE o.name=#{name} AND o.tel=#{tel} AND o.isDeleted=0 AND oi.isDeleted=0 " + " ORDER BY o.regDate DESC")
 	List<OrderHistory> nonMembersOrderHistory(String name, String tel);
 }

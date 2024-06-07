@@ -8,12 +8,12 @@ import ScrollToTop from "./components/publics/ScrollToTop";
 
 export default function App() {
   return (
-    <AuthContextProvider>
+      <AuthContextProvider>
         <NavigationBar/>
         <RecentItems/>
         <ScrollToTop />
         <Outlet />
         <Footer />
-    </AuthContextProvider>
+      </AuthContextProvider>
   );
 }

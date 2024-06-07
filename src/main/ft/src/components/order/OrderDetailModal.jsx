@@ -39,12 +39,7 @@ const OrderDetailModal = ({ isOpen, handleClose, order }) => {
           주문 날짜: {order.regDate.substring(0, 10)}
         </Typography>
         <Typography sx={{ mt: 2 }}>
-          상품명: {order.name}
-          {order.map((orderItem, index) => (
-              <span key={index}>
-                  {orderItem.option}
-              </span>
-          ))}
+          상품명: {order.name}({order.option})
         </Typography>
         <Typography sx={{ mt: 2 }}>
           가격: {order.price.toLocaleString()}원

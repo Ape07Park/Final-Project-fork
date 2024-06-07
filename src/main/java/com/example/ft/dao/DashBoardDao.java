@@ -35,7 +35,7 @@ public interface DashBoardDao {
 			"       i.name as productName," +
 			"       sum((oi.price - i.cost) * oi.count) as totalRevenue " +
 			"from `order` o " +
-			"left join orderItem oi " +
+			"left join orderitem oi " +
 			"on oi.oid = o.oid " +
 			"left join item i " +
 			"on i.iid = oi.iid " +
@@ -54,7 +54,7 @@ public interface DashBoardDao {
 
     // 가장 많이 팔린 상품 Top 5
     @Select("SELECT i.iid AS productId, i.name AS productName, SUM(oi.count) AS totalSoldQuantity " +
-            "FROM `order` o JOIN orderItem oi ON o.oid = oi.oid JOIN item i ON oi.iid = i.iid " +
+            "FROM `order` o JOIN orderitem oi ON o.oid = oi.oid JOIN item i ON oi.iid = i.iid " +
             "WHERE o.status = '배송완료' AND o.isDeleted = 0 " +
             "GROUP BY i.iid, i.name ORDER BY totalSoldQuantity DESC LIMIT 5")
     List<DashBoardDto> getTop5SoldItems();

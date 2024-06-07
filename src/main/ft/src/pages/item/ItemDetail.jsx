@@ -139,7 +139,7 @@ export default function ItemDetail() {
 
   const handleAddToCart = () => {
     if (!userInfo || !userInfo.email) {
-      window.location.href = '/signIn';
+      navigate('/signIn');
       return;
     }
     const cartItem = {
@@ -241,7 +241,7 @@ export default function ItemDetail() {
   // 문의 모달
   const openInquiryModal = () => {
     if (!userInfo || !userInfo.email) {
-      window.location.href = '/signIn';
+      navigate('/signIn');
       return;
     }
     setIsInquiryModalOpen(true);
@@ -289,7 +289,7 @@ export default function ItemDetail() {
   // 찜기능
   const handleLikeClick = () => {
     if (!userInfo || !userInfo.email) {
-      window.location.href = '/signIn';
+      navigate('/signIn');
       return;
     }
   
@@ -476,7 +476,7 @@ export default function ItemDetail() {
   // =================== order item 관련 ======================
   const handleOrder = () => {
     if (!userInfo || !userInfo.email) {
-      window.location.href = '/signIn'; 
+      navigate('/signIn');
       return;
     }
     if (selectedOptions.length === 0) {

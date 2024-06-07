@@ -19,16 +19,16 @@ public interface BoardDao {
 	@Select("select * from board where isDeleted=0 and type=#{type} and iid=#{iid} order by regDate desc")
 	List<Board> getBoardList(String type, int iid);
 
-	@Insert("insert into Board values (default, #{iid}, #{email}, #{type},"
+	@Insert("insert into board values (default, #{iid}, #{email}, #{type},"
 			+ " #{typeQnA}, #{title}, default, #{content}, #{img}, default, #{secretMsg})")
 	@SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="bid", before=false, resultType=int.class)
 	void insertBoard(Board board);
 	
-	@Update("update Board set iid=#{iid}, type=#{type}, typeQnA=#{typeQnA}, title=#{title},"
+	@Update("update board set iid=#{iid}, type=#{type}, typeQnA=#{typeQnA}, title=#{title},"
 			+ " content=#{content}, img=#{img}, secretMsg=#{secretMsg} where bid=#{bid}")  
 	void updateBoard(Board board);
 	
-	@Update("update Board set isDeleted=1 where bid=#{bid}")
+	@Update("update board set isDeleted=1 where bid=#{bid}")
 	void deleteBoard(int bid);
 	
 	@Select("select * from board where type='QnA' and isDeleted=0")

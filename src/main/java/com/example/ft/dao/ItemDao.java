@@ -15,7 +15,7 @@ import com.example.ft.entity.ItemTag;
 @Mapper
 public interface ItemDao {
 	
-	@Select("select * from item where iId=#{iid} and isDeleted=0")
+	@Select("select * from item where iid=#{iid} and isDeleted=0")
 	Item getItemIid(int iid);
 
 	@Select("select * from item where isDeleted=0 order by regDate desc")
@@ -50,13 +50,13 @@ public interface ItemDao {
 	void totalSta(Item item);
 	
 	// itemOption
-	@Select("select ioid from itemOption where iId=#{iid} and isDeleted=0")
+	@Select("select ioid from itemoption where iid=#{iid} and isDeleted=0")
 	int[] getItemOptionIoid(int iid);
 	
-	@Select("select * from itemOption where ioid=#{ioid}")
+	@Select("select * from itemoption where ioid=#{ioid}")
 	ItemOption getItemsOptionIoid(int ioid);
 	
-	@Select("select * from itemOption where iId=#{iid} and isDeleted=0")
+	@Select("select * from itemoption where iid=#{iid} and isDeleted=0")
 	List<ItemOption> getItemOptionIId(int iid);
 	
 	@Insert("insert into itemoption values (default, #{iid}, #{option}, #{count}, default)")
@@ -72,10 +72,10 @@ public interface ItemDao {
 	void inventoryCalculation(int ioid, int count);
 	
 	// itemTag
-	@Select("select itid from itemTag where iId=#{iid} and isDeleted=0")
+	@Select("select itid from itemtag where iid=#{iid} and isDeleted=0")
 	int[] getItemTagItid(int iid);
 
-	@Select("select * from itemTag where iId=#{iid} and isDeleted=0")
+	@Select("select * from itemtag where iid=#{iid} and isDeleted=0")
 	List<ItemTag> getItemTagIId(int iid);
 	
 	@Insert("insert into itemtag values (default, #{iid}, #{tag}, default)")

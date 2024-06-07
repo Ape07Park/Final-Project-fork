@@ -19,20 +19,20 @@ public interface CartDaoV2 {
     CartItemResponseDto findByItemAndOptionId(String email, int iid, int ioid);
 
     @Select("select count " +
-            "from itemOption " +
+            "from itemoption " +
             "where iid = #{iid} " +
             "and ioid = #{ioid}")
     CartItemResponseDto findCountByItem(int iid, int ioid);
 
 
-    @Select("select c.cid, c.ioid, c.email," +
-            "       c.iid, c.count, i.name," +
-            "       i.img1, i.price, i.salePrice," +
-            "       i.saleDate, i.regDate,c.ioid, io.option, io.count as stockCount " +
+    @Select("select c.cid, c.ioid, c.email, " +
+            "c.iid, c.count, i.name, " +
+            "i.img1, i.price, i.salePrice, " +
+            "i.saleDate, i.regDate,c.ioid, io.option, io.count as stockCount " +
             "from cart c " +
             "left join item i " +
             "on i.iid = c.iid " +
-            "left join itemOption io " +
+            "left join itemoption io " +
             "on c.ioid = io.ioid " +
             "where c.email = #{email} " +
             "order by c.ioid desc, c.iid desc")

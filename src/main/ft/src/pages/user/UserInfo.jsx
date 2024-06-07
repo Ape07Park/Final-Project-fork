@@ -105,7 +105,7 @@ export default function UserInfo() {
               <CustomButton variant="contained" color="primary" onClick={handleUpdate}>
                 정보 수정
               </CustomButton>
-              <Button variant="contained" color="error"  onClick={handleDelete}>
+              <Button variant="contained" color="error" onClick={handleDelete}>
                 계정 삭제
               </Button>
             </Stack>

@@ -17,7 +17,7 @@ export default function NotFound() {
           <Button onClick={handle}>홈</Button>
         </span>
       </h1>
-      <img src='/img/not-found.png' alt='error' />
+      <img src={`${process.env.PUBLIC_URL}/img/not-found.png`} alt='error' />
     </div>
   )
 }

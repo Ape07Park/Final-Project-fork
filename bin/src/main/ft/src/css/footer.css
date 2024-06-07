@@ -1,0 +1,149 @@
+.footer-container {
+  margin-top: 1rem;
+  background-color: #cdc293;
+  padding: 1rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 추가된 스타일 */
+.footer-container,
+.footer-link-items,
+.footer-link-items h2,
+.footer-link-items a,
+.footer-links,
+.social-media-wrap,
+.website-rights {
+  color: black;
+}
+
+.footer-link-items a:hover {
+  color: #000;
+  transition: 0.3s ease-out;
+}
+
+.footer-input {
+  padding: 8px 20px;
+  border-radius: 2px;
+  margin-right: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  margin-bottom: 16px;
+  border: 1px solid #fff;
+}
+
+.footer-links {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-link-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-link-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 16px, 16px, 16px , 5px;
+  text-align: left;
+  width: 160px;
+  box-sizing: border-box;
+  font-size: calc(8px + 0.5vw);
+  align-items: center;
+  text-align: center;
+}
+
+.footer-link-items h2 {
+  margin-bottom: 16px;
+
+}
+
+.footer-link-items >h2 {
+  color: #000;
+
+}
+.footer-link-items a{
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.footer-link-items a:hover{
+  color: #000;
+  transition: 0.3s ease-out;
+}
+
+.footer-email-form h2 {
+  margin-bottom: 32px;
+  color: #000;
+}
+
+.footer-input::placeholder {
+  color:#b1b1b1;
+
+}
+
+.social-media {
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.social-media-wrap {
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin:40px auto 0 auto;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+}
+
+
+.website-rights {
+  color:#000;
+  margin-bottom: 16px;
+  align-items: center;;
+  font-size: 10px;
+}
+
+
+@media screen and (max-width:890px) {
+  .footer-links {
+      padding-top: 2rem;
+
+  }
+  .footer-input {
+      width: 100%;
+
+  }
+  .btn {
+      width: 100%;
+  }
+  .footer-link-wrapper {
+      flex-direction: column;
+  }
+
+  .social-media-wrap {
+      flex-direction: column;
+      display: none;
+  }
+  .social-media{
+    display: none;
+  }
+  .footer-link-items{
+    flex-basis: calc(50% - 12px);
+  }
+}

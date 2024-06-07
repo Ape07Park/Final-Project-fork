@@ -175,11 +175,15 @@ function SignIn() {
                     휴대폰
                   </Link>
                 </Typography>
-                <Typography>
+                <br/>
+                <Typography >
+                  관리자 계정은 비밀번호 변경 X
+                </Typography>
+                <Typography variant="body2" >
                   관리자 아이디: admin@gmail.com
                 </Typography>
-                <Typography>
-                  관리자 패스워드: 123456
+                <Typography variant="body2" >
+                  관리자 패스워드: 12345678
                 </Typography>
               </Box>
             </Box>
@@ -189,7 +193,7 @@ function SignIn() {
                 <Stack direction="row" spacing={2}>
 
                   <img
-                    src="img/googlelogo.png"
+                    src={`${process.env.PUBLIC_URL}/img/googlelogo.png`}
                     alt="Google Logo"
                     style={{
                       width: 40,
@@ -203,7 +207,7 @@ function SignIn() {
                     }}
                   />
                   <img
-                    src="img/kakaologo.png"
+                    src={`${process.env.PUBLIC_URL}/img/kakaologo.png`}
                     alt="Kakao Logo"
                     style={{
                       width: 40,

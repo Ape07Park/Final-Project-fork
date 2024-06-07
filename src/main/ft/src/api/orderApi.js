@@ -23,7 +23,7 @@ export const orderInsert = async (orderData) => {
 
 export const confirmPayment = async (requestData) => {
   try {
-    const response = await fetch('ft/confirm', {
+    const response = await fetch('/ft/confirm', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

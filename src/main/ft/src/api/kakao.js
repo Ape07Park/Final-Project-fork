@@ -1,5 +1,4 @@
 // 카카오 초기화 코드와 로그인 처리 코드
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
