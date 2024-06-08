@@ -1,31 +1,34 @@
-# 가구 쇼핑몰 Funiture
+# 가구 쇼핑몰 FURNiture
 가구를 다루는 쇼핑몰 웹사이트입니다. 쇼핑몰의 일반적인 기능들에 직관적인 UI를 추가했습니다.
 또한 관리자로 로그인 시 관리자를 위한 상품 추가, 회원 전체의 주문내역 보기, 통계 페이지 등을 제공합니다.
 
+# FURNiture 영상
+[![Video Label](https://i.ytimg.com/vi/MfuXneddQo8/hqdefault.jpg?sqp=-oaymwE2CPYBEIoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgBqgeAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLDRDGLgA1YnJaiYybY-sKx9lgljww)](https://www.youtube.com/watch?v=MfuXneddQo8)
+
 # 프로젝트 기간
 - 2024년 4월 16일 ~ 2024년 6월 14일
-
-# 팀원
-## 6명
 
 # [1] 기술 스택
 ![image](https://github.com/Ape07Park/Final-project-24.05-integralation/assets/132667775/5b77c38a-1026-4411-a1e4-659baab2391e)
 
 # [2] 주요 기능
 ## 유저
-회원가입, 로그인, 유저 마이페이지, 유저 정보 수정, 이메일로 비밀번호 변경, sms로 비밀번호 변경, 구매 내역
+회원가입, 로그인, 유저 마이페이지, 유저 정보 수정, 이메일로 비밀번호 변경, sms 아이디 찾기 비밀번호 변경
 
 ## 아이템
-리뷰, 해시태그, 카테고리 별 검색
+상품 리스트, 리뷰, 해시태그, 검색, 문의, 세일
 
 ## 장바구니
-전체 선택, 부분 선택 및 지우기, 상품 구매하기
+상품 저장, 구매 후 삭제
 
 ## 주문
-결재, 송장번호 조회
+결제, 송장번호 조회, 구매 내역
 
 ## 관리자
-상품의 추가, 수정, 삭제 / 할인 기간 및 할인가 지정 / 상품 통
+상품 관리 / 문의내역 관리 / 주문 내역 관리/ 상품 통계
+
+## api
+Firebase Authentication, realtimeDB, Cloudinary, Toss, DeliveryTracker, Chart.js, Karlo, CoolSMS, Azure 등이 있습니다.
 
 # [3] 업무 플로우
 ![image](https://github.com/Ape07Park/Final-project-24.05-integralation/assets/132667775/56fda504-e0bf-4460-bc2c-1721d16251a0)
