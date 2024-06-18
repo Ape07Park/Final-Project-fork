@@ -1,4 +1,4 @@
-# 가구 쇼핑몰 FURNiture
+# 가구 쇼핑몰 FUNiture
 가구를 다루는 쇼핑몰 웹사이트입니다. 쇼핑몰의 일반적인 기능들에 직관적인 UI를 추가했습니다.
 또한 관리자로 로그인 시 관리자를 위한 상품 추가, 회원 전체의 주문내역 보기, 통계 페이지 등을 제공합니다.
 
@@ -7,48 +7,57 @@
 - 2024년 4월 16일 ~ 2024년 6월 14일
 
 # [1] 주요 기능
-## 유저
-- 회원가입
-- 로그인
-- 유저 마이페이지
-- 유저 정보 수정
-- 이메일로 비밀번호 변경
-- SMS 아이디 찾기 및 비밀번호 변경
+## 유저 관련 기능
+1. 회원가입 및 로그인
+ - Firebase Authentication을 사용하여 사용자 인증 기능 구현
+2. 유저 마이페이지
+ - Firebase Realtime DB를 이용하여 유저 정보 저장 및 관리
+3. 유저 정보 수정
+ - Firebase Authentication 및 Realtime DB를 통해 유저 정보 업데이트
+4. 이메일로 비밀번호 변경
+ - Firebase Authentication을 이용하여 이메일로 비밀번호 변경 기능 제공
+5. SMS 아이디 찾기 및 비밀번호 변경
+ - CoolSMS API를 활용하여 SMS 전송 기능을 통해 아이디 찾기 및 비밀번호 변경 기능 구현
 
-## 아이템
-- 상품 리스트
-- 리뷰
-- 해시태그
-- 검색
-- 문의
-- 세일
+## 상품 관련 기능
+1. 상품 리스트 및 상세 페이지
+ - MySQL로 데이터를 관리 상품 정보 저장 및 상품 리스트 구현
+2. 리뷰 및 해시태그
+ - 상품 상세 페이지에서 사용자 리뷰 및 해시태그 관리
+3. 검색 기능
+ - 데이터베이스 검색 기능을 구현하여 상품 검색 지원
+4. 세일 및 장바구니
+ - 장바구니 기능을 구현하고, 상품의 할인 정보 관리
+5. 상품 저장 및 수정 삭제
+ - 관리가 저장한 상품 관리 및 수정 삭제 기능 제공
+6. 마음에 드는 상품 찜 기능 + AI 방 배경 그리기
+ - 사용자가 찜한 상품 리스트와 Azure의 Computer Vision API를 사용하여 이미지에서 배경을 자동으로 제거, Karlo의 AI 이미지 편집 기능으로 배경 생성 기능 제공
 
-## 장바구니
-- 상품 저장
-- 구매 후 삭제
-
-## 주문
-- 결제
-- 송장번호 조회
-- 구매 내역
-- 현재 배달 상태
+## 주문 및 결제 관련 기능
+1. 주문 및 결제
+ - Toss API를 통해 결제 처리 및 결제 상태 관리
+2. 송장번호 조회 및 현재 배달 상태
+ - DeliveryTracker API를 사용하여 송장번호 조회 및 배송 상태 관리
+3. 구매 내역 관리
+ - 데이터베이스에 구매 내역 저장 및 관리
   
-## 관리자
-- 상품 관리
-- 문의내역 관리
-- 주문 내역 관리
-- 상품 통계
+## 관리자 관련 기능
+1. 상품 관리
+ - 관리자 페이지에서 상품 등록, 수정, 삭제 기능 구현
+2. 문의내역 관리
+ - 관리자 페이지에서 사용자 문의 내역 관리
+3. 주문 내역 관리
+ - 관리자 페이지에서 주문 정보 확인 및 처리
+4. 상품 통계
+ - 데이터베이스에서 추출한 데이터를 기반으로 한 상품 판매 통계 제공
 
-## api
-- Firebase Authentication
-- Firebase Realtime DB
-- Cloudinary
-- Toss
-- DeliveryTracker
-- Chart.js
-- Karlo
-- CoolSMS
-- Azure
+## 사용할 기술 및 서비스
+ - Frontend: React.js
+ - Backend: SpringBoot
+ - 데이터베이스: Firebase Realtime DB, MySQL
+ - 데이터 시각화: Chart.js
+ - 외부 서비스 연동: Firebase Authentication, Cloudinary, Toss, DeliveryTracker, CoolSMS, Azure, Karlo
+ - 배포 : AWS EC2, Linux
 
 # [2] 기술 스택
 ![image](https://github.com/Ape07Park/Final-project-24.05-integralation/assets/132667775/5b77c38a-1026-4411-a1e4-659baab2391e)
